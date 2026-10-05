@@ -1,8 +1,6 @@
 # Segundo-Cérebro: Demografia de Primatas e Estimativa de Densidade
 > **Comparação metodológica de modelos de densidade populacional para primatas gregários na Mata Atlântica**
 
-# Segundo-C-rebro-
-
 ---
 
 ## 📌 Visão Geral
@@ -69,15 +67,19 @@ Essa diretriz evita inferências não sustentadas e garante que as estimativas s
 
 O método de distância assume que a probabilidade de detecção decai com a distância perpendicular da linha de transecto. A ideia central é estimar a função de detecção $g(x)$ e a largura efetiva do transecto, ou ESW (Effective Strip Width), a partir dos registros de campo.
 
+A forma mais usual da estimativa de densidade em transectos lineares é:
+
 $$
-\hat{D}_{\text{grupos}} = \frac{n \cdot f(0)}{2 \cdot L}
+\hat{D} = \frac{n}{2 L \hat{w}} = \frac{n \cdot f(0)}{2 L}
 $$
 
-Onde:
+onde:
 - $n$ = número de grupos observados
 - $L$ = esforço total de amostragem
-- $f(0)$ = valor da função de detecção em zero distância
-- $\text{ESW}$ = largura efetiva do transecto
+- $\hat{w}$ = largura efetiva do transecto (ESW)
+- $f(0)$ = densidade da função de detecção no centro da linha, com $f(0) = 1 / \hat{w}$
+
+Essa expressão é equivalente à forma mais comum utilizada em amostragem por distância, sendo importante destacar que $f(0)$ e ESW são duas representações da mesma informação de detecção.
 
 **Vantagens:**
 - considera que a detecção diminui com a distância;
@@ -93,15 +95,18 @@ Onde:
 
 ### 2. Método de Faixa Fixa de Kelker
 
-O método de Kelker trata a visibilidade como limitada por uma distância crítica $w_k$, dentro da qual a detecção é assumida como perfeita, isto é, $g(x) = 1.0$. A partir desse ponto, os registros mais distantes são truncados.
+O método de Kelker trata a visibilidade como limitada por uma distância crítica $w_k$, dentro da qual a detecção é assumida como perfeita, isto é, $g(x) = 1.0$. A partir desse ponto, os registros mais distantes são truncados. Nesse caso, a estimativa de densidade é escrita como:
 
 $$
-\hat{D}_{\text{grupos}} = \frac{n_w}{2 \cdot L \cdot w_k}
+\hat{D}_{K} = \frac{n_w}{2 L w_k}
 $$
 
-Onde:
+onde:
 - $n_w$ = número de grupos detectados dentro da faixa crítica
 - $w_k$ = semi-largura de visibilidade crítica
+- $L$ = esforço total de amostragem
+
+Essa é a forma mais apropriada para o método de faixa fixa, pois a área amostrada é definida diretamente pela largura crítica $w_k$.
 
 **Vantagens:**
 - reduz o efeito de outliers de distância;
@@ -117,20 +122,22 @@ Onde:
 
 ### 3. Modelo Ecológico Espacial com Área de Vida (Home Range)
 
-A extrapolação direta de transectos para grandes áreas florestais pode ignorar que os grupos ocupam o espaço de forma heterogênea. A área de vida média por grupo ($A_{\text{home\_range}}$) permite transformar densidade local em capacidade de suporte ecológico da paisagem.
+A extrapolação direta de transectos para grandes áreas florestais pode ignorar que os grupos ocupam o espaço de forma heterogênea. A área de vida média por grupo ($A_{\mathrm{home\,range}}$) permite transformar densidade local em capacidade de suporte ecológico da paisagem.
 
 $$
-\hat{N}_{\text{grupos}} = \frac{A_{\text{total}}}{A_{\text{home\_range}}}
+\hat{N}_{\text{grupos}} = \frac{A_{\text{total}}}{A_{\mathrm{home\,range}}}
 $$
 
 $$
 \hat{N}_{\text{ind}} = \hat{N}_{\text{grupos}} \times s
 $$
 
-Onde:
+onde:
 - $A_{\text{total}}$ = área total de habitat contínuo disponível
-- $A_{\text{home\_range}}$ = área média de uso por grupo
+- $A_{\mathrm{home\,range}}$ = área média de uso por grupo
 - $s$ = tamanho médio ou máximo do grupo
+
+Essa abordagem não substitui a amostragem por distância, mas contextualiza a densidade observada em termos de capacidade real da paisagem.
 
 **Vantagens:**
 - incorpora restrições ecológicas reais do uso do espaço;
